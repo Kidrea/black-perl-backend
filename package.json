@@ -1,0 +1,35 @@
+{
+  "name": "bar_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --config nodemon.json src/app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/config": "^3.3.0",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.15",
+    "@types/jsonwebtoken": "^9.0.1",
+    "@types/node": "^18.11.18",
+    "@types/pino": "^7.0.5",
+    "bcrypt": "^5.1.0",
+    "config": "^3.3.9",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.7",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "pino": "^8.8.0",
+    "pino-pretty": "^9.1.1",
+    "prisma": "^4.9.0",
+    "ts-node": "^10.9.1"
+  }
+}

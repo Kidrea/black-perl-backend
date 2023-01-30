@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model categoria_imagen {
+  categoria String     @db.VarChar(20)
+  id        Int        @id @default(autoincrement())
+  imagenes  imagenes[]
+}
+
+model imagenes {
+  id               Int              @id @default(autoincrement())
+  imagen           String           @db.VarChar(20)
+  categoria        Int
+  categoria_imagen categoria_imagen @relation(fields: [categoria], references: [id], onDelete: Cascade, map: "imagenes_ibfk_1")
+
+  @@index([categoria], map: "categoria")
+}
+
+model productos {
+  id            Int           @id @default(autoincrement())
+  codigo        String        @db.VarChar(30)
+  nombre        String        @db.VarChar(30)
+  descripcion   String        @db.VarChar(200)
+  precio        Float         @db.Float
+  disponible    Boolean       @default(true)
+  sugerido      Boolean       @default(true)
+  activo        Boolean       @default(true)
+  tipo          Int
+  imagen        String        @db.VarChar(20)
+  tipo_producto tipo_producto @relation(fields: [tipo], references: [id], onDelete: Cascade, map: "productos_ibfk_1")
+
+  @@index([tipo], map: "tipo")
+}
+
+model promociones {
+  id          Int    @id @default(autoincrement())
+  titulo      String @db.VarChar(20)
+  descripcion String @db.VarChar(200)
+  imagen      String @db.VarChar(20)
+}
+
+model rol {
+  rol                      String    @db.VarChar(20)
+  id                       Int       @id @default(autoincrement())
+  usuario_usuario_rolTorol usuario[] @relation("usuario_rolTorol")
+}
+
+model tipo_producto {
+  tipo      String      @db.VarChar(30)
+  id        Int         @id @default(autoincrement())
+  productos productos[]
+}
+
+model usuario {
+  id                   Int    @id @default(autoincrement())
+  usuario              String @unique @db.VarChar(20)
+  clave                String @db.VarChar(60)
+  rol                  Int
+  rol_usuario_rolTorol rol    @relation("usuario_rolTorol", fields: [rol], references: [id], onDelete: Cascade, map: "usuario_ibfk_1")
+
+  @@index([rol], map: "rol")
+}

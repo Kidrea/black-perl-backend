@@ -1,6 +1,7 @@
 import logger from "pino";
 import dayjs from "dayjs";
 
+// Formato de salida en consola
 const log = logger({
   transport: {
     target: "pino-pretty",

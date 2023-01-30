@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "6c577ed1-3f6e-45f5-b44f-c4f01c6c34ea",
+		"name": "perlaNegra-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13408286"
+	},
+	"item": [
+		{
+			"name": "usuarios",
+			"item": [
+				{
+					"name": "getAllUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user"
+							]
+						},
+						"description": "obtiene todos los usuarios"
+					},
+					"response": []
+				},
+				{
+					"name": "createUser",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usuario\": \"user1\",\n    \"clave\": \"user\",\n    \"rol\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user"
+							]
+						},
+						"description": "crear un Usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usuario\": \"admin\",\n    \"clave\": \"admin\",\n    \"rol\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"1"
+							]
+						},
+						"description": "crear un Usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"4"
+							]
+						},
+						"description": "crear un Usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "getOneUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "autenticacion",
+			"item": [
+				{
+					"name": "autenticarUsuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usuario\": \"admin\",\n    \"clave\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/signin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						},
+						"description": "Autenticar usuario"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:1337/api",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

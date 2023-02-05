@@ -1,4 +1,3 @@
-import { usuario } from '@prisma/client'
 import { Request, Response } from 'express'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcrypt'
@@ -9,8 +8,8 @@ const prisma = new PrismaClient()
 // obtener todos los Usuarios
 export const getAllUsers = async (_: Request, res: Response) => {
     try {
-        const user = await prisma.usuario.findMany()
-        res.json(user)
+        const users = await prisma.usuario.findMany()
+        res.json(users)
     } catch (error) {
         res.status(400).json({ error })
     }

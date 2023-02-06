@@ -46,7 +46,7 @@ model promociones {
 }
 
 model rol {
-  rol                      String    @db.VarChar(20)
+  rol                      String    @unique @db.VarChar(20)
   id                       Int       @id @default(autoincrement())
   usuario_usuario_rolTorol usuario[] @relation("usuario_rolTorol")
 }
@@ -62,7 +62,7 @@ model usuario {
   usuario              String @unique @db.VarChar(20)
   clave                String @db.VarChar(60)
   rol                  Int
-  rol_usuario_rolTorol rol    @relation("usuario_rolTorol", fields: [rol], references: [id], onDelete: Cascade, map: "usuario_ibfk_1")
+  rol_usuario_rolTorol rol    @relation("usuario_rolTorol", fields: [rol], references: [id], onDelete: NoAction, map: "usuario_ibfk_1")
 
-  @@index([rol], map: "rol")
+  @@index([rol], map: "usuario_ibfk_1")
 }

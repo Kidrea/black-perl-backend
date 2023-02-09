@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { Request, Response } from 'express'
 import log from '../log'
+import fs from 'fs'
 
 const prisma = new PrismaClient()
 
@@ -32,7 +33,6 @@ export const createProduct = async (req: Request, res: Response) => {
             res.json(newProduct)
         }
     } catch (error) {
-        log.error(error)
         res.status(400).json({ error })
     }
 }
@@ -67,6 +67,7 @@ export const updateProduct = async (req: Request, res: Response) => {
             res.status(404).json({ msg: 'The product not found' })
         } else {
             if (req.file) {
+                fs.unlink(product.imagen!, () => {})
                 req.body.imagen = req.file.path
             }
             const newProduct = await prisma.productos.update({
@@ -98,6 +99,9 @@ export const deleteProduct = async (req: Request, res: Response) => {
                     id: Number(req.params.id)
                 }
             })
+            if (fs.existsSync(product.imagen!)) {
+                fs.unlink(product.imagen!, () => {})
+            }
         }
         res.json(product)
     } catch (error) {

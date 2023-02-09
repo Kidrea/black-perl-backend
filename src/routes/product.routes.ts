@@ -13,9 +13,9 @@ import rol from '../../config/roles'
 const router = Router()
 
 router.get('/', getAllProducts)
-router.post('/', permit(rol.ADMIN), upload.single('file'), createProduct)
+router.post('/', permit(rol.ADMIN), upload, createProduct)
 router.get('/:id', getOneProduct)
-router.put('/:id', permit(rol.ADMIN), upload.single('file'), updateProduct)
+router.put('/:id', permit(rol.ADMIN), upload, updateProduct)
 router.delete('/:id', permit(rol.ADMIN), deleteProduct)
 
 export default router

@@ -7,32 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model categoria_imagen {
-  categoria String     @db.VarChar(20)
-  id        Int        @id @default(autoincrement())
-  imagenes  imagenes[]
-}
-
-model imagenes {
-  id               Int              @id @default(autoincrement())
-  imagen           String           @db.VarChar(20)
-  categoria        Int
-  categoria_imagen categoria_imagen @relation(fields: [categoria], references: [id], onDelete: Cascade, map: "imagenes_ibfk_1")
-
-  @@index([categoria], map: "categoria")
-}
-
 model productos {
   id            Int           @id @default(autoincrement())
   codigo        String        @db.VarChar(30)
-  nombre        String        @db.VarChar(30)
+  nombre        String        @unique @db.VarChar(30)
   descripcion   String        @db.VarChar(200)
   precio        Float         @db.Float
   disponible    Boolean       @default(true)
   sugerido      Boolean       @default(true)
   activo        Boolean       @default(true)
   tipo          Int
-  imagen        String        @db.VarChar(20)
+  imagen        String?       @db.VarChar(60)
   tipo_producto tipo_producto @relation(fields: [tipo], references: [id], onDelete: Cascade, map: "productos_ibfk_1")
 
   @@index([tipo], map: "tipo")

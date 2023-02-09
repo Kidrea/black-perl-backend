@@ -17,7 +17,7 @@ model productos {
   sugerido      Boolean       @default(true)
   activo        Boolean       @default(true)
   tipo          Int
-  imagen        String?       @db.VarChar(60)
+  imagen        String?       @db.VarChar(200)
   tipo_producto tipo_producto @relation(fields: [tipo], references: [id], onDelete: Cascade, map: "productos_ibfk_1")
 
   @@index([tipo], map: "tipo")
@@ -37,7 +37,7 @@ model rol {
 }
 
 model tipo_producto {
-  tipo      String      @db.VarChar(30)
+  tipo      String      @unique @db.VarChar(30)
   id        Int         @id @default(autoincrement())
   productos productos[]
 }

@@ -24,10 +24,10 @@ model productos {
 }
 
 model promociones {
-  id          Int    @id @default(autoincrement())
-  titulo      String @db.VarChar(20)
-  descripcion String @db.VarChar(200)
-  imagen      String @db.VarChar(20)
+  id          Int     @id @default(autoincrement())
+  titulo      String  @unique @db.VarChar(20)
+  descripcion String  @db.VarChar(200)
+  imagen      String? @db.VarChar(200)
 }
 
 model rol {
